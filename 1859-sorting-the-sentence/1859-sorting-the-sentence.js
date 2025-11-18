@@ -3,12 +3,20 @@
  * @return {string}
  */
 var sortSentence = function(s) {
+    const n = s.length
     const result = []
-    const words = s.split(" ")
 
-    for (let word of words) {
-        let pos = word[word.length - 1]
-        result[pos - 1] = word.slice(0, word.length - 1)
+    let build = ''
+    for (let i = 0; i < n; i++) {
+        let pos = Number(s[i])
+
+        if (!isNaN(pos) && s[i] !== " ") {
+            result[pos - 1] = build.trim()
+            build = ""
+            continue
+        }
+
+        build += s[i]
     }
 
     return result.join(' ')
