@@ -1,7 +1,46 @@
+class Node {
+    constructor(val) {
+        this.val = val
+        this.next = null
+    }
+}
+
+class MyStack {
+    constructor() {
+        this.head = null
+    }
+
+    push(val) {
+        const newNode = new Node(val)
+
+        if (!this.head) {
+            this.head = newNode
+        } else {
+            newNode.next = this.head
+            this.head = newNode
+        }
+    }
+
+    pop() {
+        if (!this.isEmpty()) {
+            this.head = this.head.next
+        }
+    }
+
+    top() {
+        return this.head.val
+    }
+
+    // -------- helpers --------
+
+    isEmpty() {
+        return this.head === null
+    }
+}
 
 var MinStack = function() {
-    this.stack = []
-    this.minStack = []
+    this.stack = new MyStack()
+    this.minStack = new MyStack()
 };
 
 /** 
@@ -11,8 +50,7 @@ var MinStack = function() {
 MinStack.prototype.push = function(val) {
     this.stack.push(val)
 
-    let minSize = this.minStack.length
-    if(this.minStack.length === 0 || this.minStack[minSize - 1] >= val){
+    if (this.minStack.isEmpty() || this.minStack.head.val >= val) {
         this.minStack.push(val)
     }
 };
@@ -21,30 +59,25 @@ MinStack.prototype.push = function(val) {
  * @return {void}
  */
 MinStack.prototype.pop = function() {
-    if(this.minStack[this.minStack.length - 1] === this.stack[this.stack.length - 1]){
+    if (this.minStack.head.val === this.stack.head.val) {
         this.minStack.pop()
     }
-    
-    if(this.stack.length !== 0){
-        this.stack.pop()
-    }
 
+    this.stack.pop()
 };
 
 /**
  * @return {number}
  */
 MinStack.prototype.top = function() {
-    if(this.stack.length !== 0){
-        return this.stack[this.stack.length - 1]
-    }
+    return this.stack.top()
 };
 
 /**
  * @return {number}
  */
 MinStack.prototype.getMin = function() {
-    return this.minStack[this.minStack.length - 1]
+    return this.minStack.head.val
 };
 
 /** 
@@ -55,3 +88,4 @@ MinStack.prototype.getMin = function() {
  * var param_3 = obj.top()
  * var param_4 = obj.getMin()
  */
+
