@@ -18,7 +18,6 @@ var isPossibleToSplit = function(nums) {
 
     const ansN = nums.length / 2
 
-    // return set1.length === set2.length && ansN === set2.length && ansN === set1.length
     const result = ansN === set1.size && ansN === set2.size
     return result
 };
