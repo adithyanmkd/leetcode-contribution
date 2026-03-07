@@ -69,9 +69,8 @@ var nextGreaterElement = function(nums1, nums2) {
         const current = nums2[i]
 
         while (!stack.isEmpty && current > nums2[stack.top()]) {
-            const index = stack.top()
-            nge[index] = current
-            stack.pop()
+            const smallIdx = stack.pop()
+            nge[smallIdx] = current
         }
 
         stack.push(i)
