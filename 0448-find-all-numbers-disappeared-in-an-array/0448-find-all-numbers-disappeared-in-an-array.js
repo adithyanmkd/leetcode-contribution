@@ -38,7 +38,7 @@ class MySet {
  * @param {number[]} nums
  * @return {number[]}
  */
-var findDisappearedNumbers = function(nums) {
+var findDisappearedNumbers = function (nums) {
     const n = nums.length
     const set = new MySet()
     const result = []
@@ -58,7 +58,5 @@ var findDisappearedNumbers = function(nums) {
         }
     }
 
-    console.log(result)
     return result
-
 };
