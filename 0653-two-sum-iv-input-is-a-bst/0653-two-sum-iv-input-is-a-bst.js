@@ -23,12 +23,10 @@ var findTarget = function(root, k) {
     }
 
     dfs(root)
-    console.log(arr)
+    
     const set = new Set()
-
     for (let num of arr) {
         const bal = k - num
-
         if (set.has(bal)) {
             return true
         }
