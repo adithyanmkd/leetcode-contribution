@@ -4,16 +4,14 @@
  */
 var removeDuplicates = function(nums) {
     const n = nums.length
-    let prev = nums[0]
-    let insertPos = 1
+    const removed = [...new Set(nums)]
 
-    for (let i = 1; i < n; i++) {
-        if (prev !== nums[i]) {
-            prev = nums[i]
-            nums[insertPos] = nums[i]
-            insertPos++
-        }
+    for (let i = 0; i < removed.length; i++) {
+        nums[i] = removed[i]
     }
 
-    return insertPos
+    let shouldRemove = nums.length - removed.length
+    for (let i = 0; i < shouldRemove; i++) {
+        nums.pop()
+    }
 };
