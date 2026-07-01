@@ -6,12 +6,8 @@
 var numJewelsInStones = function(jewels, stones) {
     let result = 0
 
-    for(let al of jewels){
-        for(let key in stones){
-            if(al === stones[key]){
-                result++
-            }
-        }
+    for (let char of stones) {
+        if (jewels.includes(char)) result++
     }
 
     return result
