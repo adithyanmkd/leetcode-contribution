@@ -30,11 +30,11 @@ class MyMinHeap {
         const right = this.right(i)
         let minIndex = i
 
-        if (left < n && this.heap[minIndex] > this.heap[left]) {
+        if (left < n && this.heap[minIndex][1] > this.heap[left][1]) {
             minIndex = left
         }
 
-        if (right < n && this.heap[minIndex] > this.heap[right]) {
+        if (right < n && this.heap[minIndex][1] > this.heap[right][1]) {
             minIndex = right
         }
 
@@ -45,7 +45,9 @@ class MyMinHeap {
     }
 
     heapifyUp(i) {
-        if (this.heap[i] < this.heap[this.parent(i)]) {
+        if (i === 0) return
+
+        if (this.heap[i][1] < this.heap[this.parent(i)][1]) {
             this.swap(i, this.parent(i))
             this.heapifyUp(this.parent(i))
         }
@@ -78,8 +80,18 @@ var topKFrequent = function(nums, k) {
         freq.set(num, count + 1)
     }
 
-    const sorted = [...freq.entries()].sort((a, b) => b[1] - a[1]).map((val) => val[0])
-    const res = sorted.slice(0, k)
-    return res
+    for (let [num, count] of freq) {
+        minHeap.insert([num, count])
 
+        if (minHeap.heap.length > k) {
+            minHeap.extractMin()
+        }
+    }
+
+    const res = []
+    while (minHeap.heap.length > 0) {
+        res.push(minHeap.extractMin()[0])
+    }
+
+    return res
 };
