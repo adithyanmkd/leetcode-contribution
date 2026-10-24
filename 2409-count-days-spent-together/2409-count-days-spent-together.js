@@ -5,6 +5,18 @@
  * @param {string} leaveBob
  * @return {number}
  */
+
+const getDay = (month, date) => {
+    const months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31] // number of days per month
+    let day = 0
+
+    for (let start = 0; start < month; start++) {
+        day += months[start]
+    }
+
+    return day += date
+}
+
 var countDaysTogether = function(arriveAlice, leaveAlice, arriveBob, leaveBob) {
     const months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31] // number of days per month
 
@@ -13,54 +25,13 @@ var countDaysTogether = function(arriveAlice, leaveAlice, arriveBob, leaveBob) {
     const bobArrive = arriveBob.split("-")
     const bobLeave = leaveBob.split("-")
 
-    const aliceMonth = Number(aliceArrive[0]) - 1
-    const aliceDate = Number(aliceArrive[1])
-    let aliceArrivalDay = 0
-
-    for (let i = 0; i < aliceMonth; i++) {
-        aliceArrivalDay += months[i]
-    }
-
-    aliceArrivalDay += aliceDate
-
-    const bobMonth = Number(bobArrive[0]) - 1
-    const bobDate = Number(bobArrive[1])
-    let bobArrivalDay = 0
-
-    for (let i = 0; i < bobMonth; i++) {
-        bobArrivalDay += months[i]
-    }
-
-    bobArrivalDay += bobDate
-
-    const aliceLeaveMonth = Number(aliceLeave[0]) - 1
-    const aliceLeaveDate = Number(aliceLeave[1])
-    let aliceDepartureDay = 0
-
-    for (let start = 0; start < aliceLeaveMonth; start++) {
-        aliceDepartureDay += months[start]
-    }
-
-    aliceDepartureDay += aliceLeaveDate
-
-    const bobLeaveMonth = Number(bobLeave[0]) - 1
-    const bobLeaveDate = Number(bobLeave[1])
-    let bobDepartureDay = 0
-
-    for (let start = 0; start < bobLeaveMonth; start++) {
-        bobDepartureDay += months[start]
-    }
-
-    bobDepartureDay += bobLeaveDate
-
-    console.log(aliceArrivalDay, bobArrivalDay, aliceDepartureDay, bobDepartureDay)
+    let aliceArrivalDay = getDay(Number(aliceArrive[0]) - 1, Number(aliceArrive[1]))
+    let bobArrivalDay = getDay(Number(bobArrive[0]) - 1, Number(bobArrive[1]))
+    let aliceDepartureDay = getDay(Number(aliceLeave[0]) - 1, Number(aliceLeave[1]))
+    let bobDepartureDay = getDay(Number(bobLeave[0]) - 1, Number(bobLeave[1]))
 
     const start = Math.max(aliceArrivalDay, bobArrivalDay)
     const end = Math.min(aliceDepartureDay, bobDepartureDay)
 
-    if (start > end) {
-        return 0 
-    } else {
-        return end - start + 1
-    }
+    return start > end ? 0 : end - start + 1
 };
