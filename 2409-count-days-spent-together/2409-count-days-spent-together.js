@@ -18,8 +18,6 @@ const getDay = (month, date) => {
 }
 
 var countDaysTogether = function(arriveAlice, leaveAlice, arriveBob, leaveBob) {
-    const months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31] // number of days per month
-
     const aliceArrive = arriveAlice.split("-")
     const aliceLeave = leaveAlice.split("-")
     const bobArrive = arriveBob.split("-")
