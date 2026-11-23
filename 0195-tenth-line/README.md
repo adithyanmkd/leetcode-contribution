@@ -1,4 +1,4 @@
-<h2><a href="https://leetcode.com/problems/tenth-line">195. Tenth Line</a></h2><h3>Easy</h3><hr><p>Given a text file&nbsp;<code>file.txt</code>, print&nbsp;just the 10th line of the&nbsp;file.</p>
+<h2><a href="https://leetcode.com/problems/tenth-line/">195. Tenth Line</a></h2><h3>Easy</h3><hr><p>Given a text file&nbsp;<code>file.txt</code>, print&nbsp;just the 10th line of the&nbsp;file.</p>
 
 <p><strong class="example">Example:</strong></p>
 
